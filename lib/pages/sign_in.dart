@@ -12,23 +12,33 @@ class _SignInPageState extends State<SignInPage> {
   var txtEditEmail = TextEditingController();
   var txtEditPass = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    txtEditEmail.dispose();
+    txtEditPass.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
           child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 30),
-        child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                pict(),
-                emailInput(),
-                passInput(),
-                textForgetPass(),
-                submitButton(context)
-              ],
-            )),
+        margin: const EdgeInsets.symmetric(horizontal: 20),
+        child: SingleChildScrollView(
+          child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  pict(),
+                  emailInput(),
+                  passInput(),
+                  textForgetPass(),
+                  submitButton(context)
+                ],
+              )),
+        ),
       )),
     );
   }
@@ -52,11 +62,11 @@ class _SignInPageState extends State<SignInPage> {
     return Container(
       height: 50,
       width: double.infinity,
-      margin: const EdgeInsets.only(top: 20),
+      margin: const EdgeInsets.only(top: 10),
       child: TextButton(
         onPressed: () {
           if (_formKey.currentState!.validate()) {
-            Navigator.pushNamed(context, '/home-page');
+            Navigator.pushNamed(context, '/start-page');
           }
         },
         style: TextButton.styleFrom(
@@ -128,10 +138,9 @@ class _SignInPageState extends State<SignInPage> {
     ]);
   }
 
-  Container pict() {
-    return Container(
-        margin: const EdgeInsets.symmetric(vertical: 20),
-        height: 450,
+  SizedBox pict() {
+    return SizedBox(
+        height: 350,
         child: Image.asset("assets/images/ilustrasi.png"));
   }
 }

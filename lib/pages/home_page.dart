@@ -10,7 +10,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late TabController _tabController;
-  int _currentIndex = 0;
+  
 
   @override
   void initState() {
@@ -18,53 +18,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     super.initState();
   }
 
-  void _onTap(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _onTap(2);
-        },
-        child: const Icon(Icons.add_shopping_cart_rounded),
-        elevation: 4,
-        backgroundColor: const Color(0xff367668),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
-        unselectedItemColor: Colors.grey,
-        onTap: _onTap,
-        elevation: 15,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_shopping_cart_rounded, color: Colors.white),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_none_rounded),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: "",
-          ),
-        ],
-      ),
       appBar: AppBar(
         leading: const Icon(
           Icons.menu,
@@ -131,8 +87,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   itemCount: 2),
             ),
 
+            //tabbar
             Container(
               height: 30,
+              width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
